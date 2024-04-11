@@ -12,5 +12,9 @@ import { SearchService } from './search.service';
 export class SearchComponent implements OnInit {
   searchService: SearchService = inject(SearchService);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchService
+      .searchGiphy('cheeseburgers')
+      .subscribe((res) => console.log(res['data']));
+  }
 }

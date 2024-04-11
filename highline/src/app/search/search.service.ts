@@ -1,9 +1,23 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
+  http: HttpClient = inject(HttpClient);
+  url = 'https://api.giphy.com/v1/gifs/search';
+  apiKey = '6EVcVP3DXqZEg9lFh9tuCUcdF41DLsgP';
 
-  constructor() { }
+  constructor() {}
+
+  searchGiphy(term: string): Observable<any> {
+    return this.http.get<any>(`${this.url}`, {
+      params: {
+        api_key: this.apiKey,
+        q: term,
+      },
+    });
+  }
 }
