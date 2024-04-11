@@ -18,6 +18,8 @@ export class SearchService {
         params: {
           api_key: this.apiKey,
           q: term,
+          limit: 8,
+          rating: 'g',
         },
       })
       .pipe(map((res: any) => res['data']));

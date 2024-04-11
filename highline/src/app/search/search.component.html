@@ -22,15 +22,17 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-8">
-    <ng-container *ngIf="results$ | async as results">
-      @for (item of results; track $index) {
-      <div class="card">
-        <div class="card-body"></div>
+<div class="row my-3">
+  <ng-container *ngIf="results$ | async as results">
+    @for (item of results; track $index) {
+    <div class="col-3" style="max-width: 200px">
+      <div class="card mb-3 h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.username }}</p>
+        </div>
       </div>
-      <p>{{ item.title }}</p>
-      }
-    </ng-container>
-  </div>
+    </div>
+    }
+  </ng-container>
 </div>
