@@ -7,10 +7,30 @@
     <div class="d-flex gap-3">
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" placeholder="Search..." />
+        <input
+          #search
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          [(ngModel)]="term"
+        />
       </div>
-      <button class="btn btn-primary">Search</button>
-      <button class="btn btn-outline-primary">Clear</button>
+      <button class="btn btn-primary" (click)="searchValue(search.value)">
+        Search
+      </button>
+      <button class="btn btn-outline-primary" (click)="clear()">Clear</button>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <ng-container *ngIf="results$ | async as results">
+      @for (item of results; track $index) {
+      <div class="card">
+        <div class="card-body"></div>
+      </div>
+      <p>{{ item.title }}</p>
+      }
+    </ng-container>
   </div>
 </div>

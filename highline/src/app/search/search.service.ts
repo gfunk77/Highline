@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,13 @@ export class SearchService {
   constructor() {}
 
   searchGiphy(term: string): Observable<any> {
-    return this.http.get<any>(`${this.url}`, {
-      params: {
-        api_key: this.apiKey,
-        q: term,
-      },
-    });
+    return this.http
+      .get<any>(`${this.url}`, {
+        params: {
+          api_key: this.apiKey,
+          q: term,
+        },
+      })
+      .pipe(map((res: any) => res['data']));
   }
 }
